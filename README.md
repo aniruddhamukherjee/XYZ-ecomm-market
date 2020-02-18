@@ -39,7 +39,17 @@ JDBC URL : jdbc:h2:mem:testdb
 username: admin
 password : admin
 ```
-*Sample Product json response : \
+H2 DB schema setup file : 
+```
+src/main/resources/schema.sql
+```
+H2 DB data setup file : 
+```
+src/main/resources/data.sql
+```
+
+Sample Product json response : 
+```
 [
   {
     "id": 1,
@@ -64,6 +74,7 @@ password : admin
     "color": "Yellow"
   }
   ]
+  ```
 ## Running the tests
 In the root dir run -> 
 ```
