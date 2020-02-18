@@ -105,7 +105,7 @@ public class XyzEcommMarketApplicationUnitTests {
 		prod1.setAvailableCount(600);
 		prod1.setSupplier("AbcRetail");
 		prodListForBrand.add(prod1);
-		when(dataServiceMock.getProductsByBrand(anyString(),1)).thenReturn(prodListForBrand);
+		when(dataServiceMock.getProductsByBrand(anyString(), anyInt())).thenReturn(prodListForBrand);
 		assertTrue(!CollectionUtils.isEmpty(productBusiness.getProductsByBrand("Nike",1)));
 		assertTrue(productBusiness.getProductsByBrand("Nike", 1).size()==1);
 		assertEquals("Black Cap",productBusiness.getProductsByBrand("Nike", 1).get(0).getName());
