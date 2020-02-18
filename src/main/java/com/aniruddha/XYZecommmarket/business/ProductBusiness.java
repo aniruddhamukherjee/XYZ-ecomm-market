@@ -13,16 +13,16 @@ public class ProductBusiness {
     @Autowired
     private ProductRepository productRepository;
 
-    public List<Product> getAllProducts() {
-        return productRepository.getAllProducts();
+    public List<Product> getAllProducts(int offset) {
+        return productRepository.getAllProducts(offset);
     }
 
-    public List<Product> getProductsByBrand(String brandName) {
-        return productRepository.getProductsByBrand(brandName);
+    public List<Product> getProductsByBrand(String brandName, int offset) {
+        return productRepository.getProductsByBrand(brandName, offset);
     }
 
-    public List<Product> getProductsByPriceRange(Double minPrice, Double maxPrice) {
-        return productRepository.getProductsByPriceRange(minPrice, maxPrice);
+    public List<Product> getProductsByPriceRange(Double minPrice, Double maxPrice, int offset) {
+        return productRepository.getProductsByPriceRange(minPrice, maxPrice, offset);
     }
 
     public Product getProductBySKU(Integer productId) {
@@ -33,12 +33,12 @@ public class ProductBusiness {
         return productRepository.getProductCountByIdAndSeller(productId, sellerId);
     }
 
-    public List<Product> getProductsByTypeAndSize(Integer productType, Integer size) {
-        return productRepository.getProductsByTypeAndSize(productType, size);
+    public List<Product> getProductsByTypeAndSize(Integer productType, Integer size, int offset) {
+        return productRepository.getProductsByTypeAndSize(productType, size, offset);
     }
 
-    public List<Product> getProductsByTypeAndColor(Integer productType, String color) {
-        return productRepository.getProductsByTypeAndColor(productType, color);
+    public List<Product> getProductsByTypeAndColor(Integer productType, String color,  int offset) {
+        return productRepository.getProductsByTypeAndColor(productType, color, offset);
     }
 
     public ProductRepository getProductRepository() {

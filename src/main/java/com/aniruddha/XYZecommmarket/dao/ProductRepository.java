@@ -22,6 +22,8 @@ public class ProductRepository {
     private static final String baseSQL = "Select p.id as PRODUCT_ID,p.name,size,color,b.name as BRAND,pt.name as TYPE,s.name as SELLER,available_count,price " +
             "from Product p,Brand b,Supplier s,Producttype pt \n" +
             "where p.brand=b.id and p.type=pt.id and p.supplier=s.id ";
+    private static final String defaultOrdering = " order by p.id";
+    private static final String pagination = " limit 20 offset ";
 
     public JdbcTemplate getJdbcTemplate() {
         return jdbcTemplate;
@@ -32,23 +34,23 @@ public class ProductRepository {
     }
 
     @Cacheable(value="products")
-    public List<Product> getAllProducts() {
-        return jdbcTemplate.query(baseSQL, (resultSet, i) -> {
+    public List<Product> getAllProducts(int offset) {
+        return jdbcTemplate.query(baseSQL + defaultOrdering + pagination + String.valueOf(offset-1), (resultSet, i) -> {
             return mapToProduct(resultSet);
         });
     }
 
     @Cacheable(value="productsByBrands", key="#brandName")
-    public List<Product> getProductsByBrand(String brandName) {
-        String sql = baseSQL + "and upper(b.name)=upper(?)";
+    public List<Product> getProductsByBrand(String brandName, int offset) {
+        String sql = baseSQL + "and upper(b.name)=upper(?)" + defaultOrdering + pagination + String.valueOf(offset-1);
         return jdbcTemplate.query(sql, new Object[]{brandName}, (resultSet, i) -> {
             return mapToProduct(resultSet);
         });
     }
 
     @Cacheable(value="products", key="#maxPrice")
-    public List<Product> getProductsByPriceRange(Double minPrice, Double maxPrice) {
-        String sql = baseSQL + "and price > ? and price < ?";
+    public List<Product> getProductsByPriceRange(Double minPrice, Double maxPrice, int offset) {
+        String sql = baseSQL + "and price > ? and price < ?" + defaultOrdering + pagination + String.valueOf(offset-1);
         return jdbcTemplate.query(sql, new Object[]{minPrice, maxPrice}, (resultSet, i) -> {
             return mapToProduct(resultSet);
         });
@@ -73,8 +75,8 @@ public class ProductRepository {
     }
 
     @Cacheable(value="products", key="#size")
-    public List<Product> getProductsByTypeAndSize(Integer productType, Integer size) {
-        String sql = baseSQL + "and pt.id=? and size=?";
+    public List<Product> getProductsByTypeAndSize(Integer productType, Integer size, int offset) {
+        String sql = baseSQL + "and pt.id=? and size=?" + defaultOrdering + pagination + String.valueOf(offset-1);
         return jdbcTemplate.query(sql, new Object[]{productType, size},
                 (resultSet, i) -> {
                     return mapToProduct(resultSet);
@@ -82,8 +84,8 @@ public class ProductRepository {
     }
 
     @Cacheable(value="products", key="#color")
-    public List<Product> getProductsByTypeAndColor(Integer productType, String color) {
-        String sql = baseSQL + "and pt.id=? and upper(color)=upper(?)";
+    public List<Product> getProductsByTypeAndColor(Integer productType, String color, int offset) {
+        String sql = baseSQL + "and pt.id=? and upper(color)=upper(?)" + defaultOrdering + pagination + String.valueOf(offset-1);
         return jdbcTemplate.query(sql, new Object[]{productType, color},
                 (resultSet, i) -> {
                     return mapToProduct(resultSet);

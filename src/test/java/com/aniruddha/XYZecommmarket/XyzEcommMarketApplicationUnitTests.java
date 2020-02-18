@@ -74,7 +74,7 @@ public class XyzEcommMarketApplicationUnitTests {
 	 */
 	@Test
 	public void testProductsListNotEmpty() {
-		List<Product> l = productRepository.getAllProducts();
+		List<Product> l = productRepository.getAllProducts(1);
 		Assert.assertTrue(l.size() > 0);
 	}
 
@@ -84,8 +84,8 @@ public class XyzEcommMarketApplicationUnitTests {
 	 */
 	@Test
 	public void testGetAllProductsMock(){
-		when(dataServiceMock.getAllProducts()).thenReturn(prodList);
-		assertEquals(2, productBusiness.getAllProducts().size());
+		when(dataServiceMock.getAllProducts(1)).thenReturn(prodList);
+		assertEquals(2, productBusiness.getAllProducts(1).size());
 	}
 
 	/**
@@ -105,10 +105,10 @@ public class XyzEcommMarketApplicationUnitTests {
 		prod1.setAvailableCount(600);
 		prod1.setSupplier("AbcRetail");
 		prodListForBrand.add(prod1);
-		when(dataServiceMock.getProductsByBrand(anyString())).thenReturn(prodListForBrand);
-		assertTrue(!CollectionUtils.isEmpty(productBusiness.getProductsByBrand("Nike")));
-		assertTrue(productBusiness.getProductsByBrand("Nike").size()==1);
-		assertEquals("Black Cap",productBusiness.getProductsByBrand("Nike").get(0).getName());
+		when(dataServiceMock.getProductsByBrand(anyString(),1)).thenReturn(prodListForBrand);
+		assertTrue(!CollectionUtils.isEmpty(productBusiness.getProductsByBrand("Nike",1)));
+		assertTrue(productBusiness.getProductsByBrand("Nike", 1).size()==1);
+		assertEquals("Black Cap",productBusiness.getProductsByBrand("Nike", 1).get(0).getName());
 	}
 
 	/**
