@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
 
 @RestController
+@RequestMapping("products")
 public class ProductController {
 
     @Autowired
@@ -20,7 +21,7 @@ public class ProductController {
      * Api for fetching all products with details
      * @return List of products
      */
-    @RequestMapping(value = "/products/pageNum/{pageNum}", method = RequestMethod.GET)
+    @RequestMapping(value = "/pageNum/{pageNum}", method = RequestMethod.GET)
     public List<Product> getAllProducts(@PathVariable("pageNum") int offset) {
         return productBusiness.getAllProducts(offset);
     }
@@ -28,7 +29,7 @@ public class ProductController {
      * Api for fetching products details by brand
      * @return List of products
      */
-    @RequestMapping(value = "/products/brand/{brand}/pageNum/{pageNum}", method = RequestMethod.GET)
+    @RequestMapping(value = "/brand/{brand}/pageNum/{pageNum}", method = RequestMethod.GET)
     public List<Product> getProductsByBrand(@PathVariable("brand") String brand, @PathVariable("pageNum") int offset) {
         return productBusiness.getProductsByBrand(brand, offset);
     }
@@ -36,7 +37,7 @@ public class ProductController {
      * Api for fetching products details by price range
      * @return List of products
      */
-    @RequestMapping(value = "/products/price/min/{min}/max/{max}/pageNum/{pageNum}", method = RequestMethod.GET)
+    @RequestMapping(value = "/price/min/{min}/max/{max}/pageNum/{pageNum}", method = RequestMethod.GET)
     public List<Product> getProductsByPriceRange(@PathVariable("min") Double minPrice, @PathVariable("max") Double maxPrice, @PathVariable("pageNum") int offset) {
         return productBusiness.getProductsByPriceRange(minPrice, maxPrice, offset);
     }
@@ -44,7 +45,7 @@ public class ProductController {
      * Api for fetching product details by SKU
      * @return List of products
      */
-    @RequestMapping(value = "/products/{sku}", method = RequestMethod.GET)
+    @RequestMapping(value = "/{sku}", method = RequestMethod.GET)
     public Product getProductBySKU(@PathVariable("sku") Integer productId) {
         return productBusiness.getProductBySKU(productId);
     }
@@ -52,7 +53,7 @@ public class ProductController {
      * Api for fetching product's count by SKU and seller
      * @return List of products
      */
-    @RequestMapping(value = "/products/{sku}/seller/{supplier}", method = RequestMethod.GET)
+    @RequestMapping(value = "/{sku}/seller/{supplier}", method = RequestMethod.GET)
     public Integer getProductBySKU(@PathVariable("sku") Integer productId, @PathVariable("supplier") Integer sellerId) {
         return productBusiness.getProductCountByIdAndSeller(productId, sellerId);
     }
@@ -60,7 +61,7 @@ public class ProductController {
      * Api for fetching products details by type and size
      * @return List of products
      */
-    @RequestMapping(value = "/products/type/{type}/size/{size}/pageNum/{pageNum}", method = RequestMethod.GET)
+    @RequestMapping(value = "/type/{type}/size/{size}/pageNum/{pageNum}", method = RequestMethod.GET)
     public List<Product> getProductsByTypeAndSize(@PathVariable("type") Integer productType, @PathVariable("size") Integer size, @PathVariable("pageNum") int offset) {
         return productBusiness.getProductsByTypeAndSize(productType, size, offset);
     }
@@ -68,7 +69,7 @@ public class ProductController {
      * Api for fetching products details by type and color
      * @return List of products
      */
-    @RequestMapping(value = "/products/type/{type}/color/{color}/pageNum/{pageNum}", method = RequestMethod.GET)
+    @RequestMapping(value = "/type/{type}/color/{color}/pageNum/{pageNum}", method = RequestMethod.GET)
     public List<Product> getProductsByTypeAndColor(@PathVariable("type") Integer productType, @PathVariable("color") String color, @PathVariable("pageNum") int offset) {
         return productBusiness.getProductsByTypeAndColor(productType, color, offset);
     }
