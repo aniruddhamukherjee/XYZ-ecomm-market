@@ -8,15 +8,15 @@ It uses H2 embedded RDMS database.
 
 *URLS exposed  >>
 
-GET : /products/pageNum/{pageNum} :  Api for fetching all products with details
-GET : /products/brand/{brand}/pageNum/{pageNum} :  Api for fetching products details by brand
-GET : /products/price/min/{min}/max/{max}/pageNum/{pageNum} : Api for fetching products details by price range 
-GET : /products/{sku}  : Api for fetching product details by SKU 
-GET : /products/{sku}/seller/{supplier} :  Api for fetching product's count by SKU and seller 
-GET : /products/type/{type}/size/{size}/pageNum/{pageNum}  : Api for fetching products details by type and size
-GET : /products/type/{type}/color/{color}/pageNum/{pageNum} : Api for fetching products details by type and color
+GET : /products/pageNum/{pageNum} :  Api for fetching all products with details \
+GET : /products/brand/{brand}/pageNum/{pageNum} :  Api for fetching products details by brand \
+GET : /products/price/min/{min}/max/{max}/pageNum/{pageNum} : Api for fetching products details by price range  \
+GET : /products/{sku}  : Api for fetching product details by SKU  \
+GET : /products/{sku}/seller/{supplier} :  Api for fetching product's count by SKU and seller  \
+GET : /products/type/{type}/size/{size}/pageNum/{pageNum}  : Api for fetching products details by type and size \
+GET : /products/type/{type}/color/{color}/pageNum/{pageNum} : Api for fetching products details by type and color \
 
-*Sample Product json response :
+*Sample Product json response : \
 [
   {
     "id": 1,
@@ -42,17 +42,17 @@ GET : /products/type/{type}/color/{color}/pageNum/{pageNum} : Api for fetching p
   }
   ]
    
-*App Setup :
+*App Setup :\
 In the root dir run ->
 mvn spring-boot:run
 
-You will be able to access the application through:
+You will be able to access the application through:\
 http://localhost:8081/products/<api-relative-url>
   
-URL to access embedded H2 Database console :
+URL to access embedded H2 Database console :\
 http://localhost:8081/h2-console/
 
-JDBC URL : jdbc:h2:mem:testdb
-username: admin
-password : admin
+JDBC URL : jdbc:h2:mem:testdb\
+username: admin\
+password : admin\
 
