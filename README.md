@@ -6,7 +6,9 @@ XYZ B2C ecommerce market place is working on building a solution to search an on
 This is a fully functional spring-boot web service with pagination (20 results at a time) and data caching (conditional and time interval, 2 hrs).
 It uses H2 embedded RDMS database. 
 
-*URLS exposed  >>
+## Information
+
+URLS exposed  >>
 
 GET : /products/pageNum/{pageNum} :  Api for fetching all products with details \
 GET : /products/brand/{brand}/pageNum/{pageNum} :  Api for fetching products details by brand \
@@ -16,6 +18,27 @@ GET : /products/{sku}/seller/{supplier} :  Api for fetching product's count by S
 GET : /products/type/{type}/size/{size}/pageNum/{pageNum}  : Api for fetching products details by type and size \
 GET : /products/type/{type}/color/{color}/pageNum/{pageNum} : Api for fetching products details by type and color \
 
+### Prerequisites
+```
+java 8+ 
+maven
+```
+
+### App Setup
+```
+In the root dir run -> 
+mvn spring-boot:run
+
+You will be able to access the application through:
+http://localhost:8081/products/<api-relative-url>
+  
+URL to access embedded H2 Database console :
+http://localhost:8081/h2-console/
+
+JDBC URL : jdbc:h2:mem:testdb
+username: admin
+password : admin
+```
 *Sample Product json response : \
 [
   {
@@ -41,18 +64,19 @@ GET : /products/type/{type}/color/{color}/pageNum/{pageNum} : Api for fetching p
     "color": "Yellow"
   }
   ]
-   
-*App Setup :\
-In the root dir run ->
-mvn spring-boot:run
+## Running the tests
+In the root dir run -> 
+```
+mvn test
+```
 
-You will be able to access the application through:\
-http://localhost:8081/products/<api-relative-url>
-  
-URL to access embedded H2 Database console :\
-http://localhost:8081/h2-console/
+## Deployment
+No need of separate deployment to server. Embedded Tomcat takes care of it.
 
-JDBC URL : jdbc:h2:mem:testdb\
-username: admin\
-password : admin\
+
+## Author
+
+* Aniruddha Mukherjee  - - [https://github.com/aniruddhamukherjee](https://github.com/aniruddhamukherjee)
+
+
 
