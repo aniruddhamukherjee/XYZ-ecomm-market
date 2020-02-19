@@ -40,7 +40,7 @@ public class ProductRepository {
         });
     }
 
-    @Cacheable(value="productsByBrands", key="#brandName")
+    @Cacheable(value="products", key="#brandName")
     public List<Product> getProductsByBrand(String brandName, int offset) {
         String sql = baseSQL + "and upper(b.name)=upper(?)" + defaultOrdering + pagination + String.valueOf(offset-1);
         return jdbcTemplate.query(sql, new Object[]{brandName}, (resultSet, i) -> {
@@ -65,10 +65,10 @@ public class ProductRepository {
                 });
     }
 
-    @Cacheable(value="productCountBySeller", key="#sellerId")
-    public Integer getProductCountByIdAndSeller(Integer productId, Integer sellerId) {
-        String sql = baseSQL + "and p.id=? and s.id=?";
-        return jdbcTemplate.query(sql, new Object[]{productId, sellerId},
+    @Cacheable(value="products", key="#sellerId")
+    public Integer getProductCountBySeller(Integer sellerId) {
+        String sql = baseSQL + "and s.id=?";
+        return jdbcTemplate.query(sql, new Object[]{sellerId},
                 (resultSet, i) -> {
                     return mapToProduct(resultSet);
                 }).size();
