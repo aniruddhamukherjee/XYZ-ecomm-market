@@ -29,8 +29,8 @@ public class ProductBusiness {
         return productRepository.getProductBySKU(productId);
     }
 
-    public Integer getProductCountByIdAndSeller(Integer productId, Integer sellerId) {
-        return productRepository.getProductCountByIdAndSeller(productId, sellerId);
+    public Integer getProductCountBySeller(Integer sellerId) {
+        return productRepository.getProductCountBySeller(sellerId);
     }
 
     public List<Product> getProductsByTypeAndSize(Integer productType, Integer size, int offset) {
