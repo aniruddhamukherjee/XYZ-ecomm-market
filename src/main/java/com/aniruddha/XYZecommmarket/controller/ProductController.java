@@ -50,12 +50,12 @@ public class ProductController {
         return productBusiness.getProductBySKU(productId);
     }
     /**
-     * Api for fetching product's count by SKU and seller
+     * Api for fetching product count by seller
      * @return List of products
      */
-    @RequestMapping(value = "/{sku}/seller/{supplier}", method = RequestMethod.GET)
-    public Integer getProductBySKU(@PathVariable("sku") Integer productId, @PathVariable("supplier") Integer sellerId) {
-        return productBusiness.getProductCountByIdAndSeller(productId, sellerId);
+    @RequestMapping(value = "/seller/{supplier}", method = RequestMethod.GET)
+    public Integer getProductCountBySeller(@PathVariable("supplier") Integer sellerId) {
+        return productBusiness.getProductCountBySeller(sellerId);
     }
     /**
      * Api for fetching products details by type and size
